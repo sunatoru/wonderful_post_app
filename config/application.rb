@@ -29,7 +29,15 @@ module WonderfulPostApp
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    # Don't generate system test files.
+
+    config.generators do |g|
+      g.jbuilder false
+      g.javascripts false
+      g.stylesheets false
+      g.helper false
+      g.test_framework false
+    end
+   # Don't generate system test files.
     config.generators.system_tests = nil
   end
 end
