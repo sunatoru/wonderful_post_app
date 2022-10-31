@@ -16,8 +16,9 @@ class ArticlesController < ApplicationController
     def create
       @article = Article.new(article_params)
       if @article.save
-        redirect_to @article
+        redirect_to @article, notice: '記事が作成されました'
       else
+        flash.now[:alert] = '記事を作成に失敗しました'
         render :new
       end
     end
@@ -27,8 +28,9 @@ class ArticlesController < ApplicationController
 
     def update
       if @article.update(article_params)
-        redirect_to @article
+        redirect_to @article, notice: '記事が編集されました'
       else
+        flash.now[:alert] = '記事の編集に失敗しました'
         render :edit
       end
     end
@@ -37,6 +39,7 @@ class ArticlesController < ApplicationController
       if @article.destroy
         redirect_to articles_path
       else
+        flash.now[:alert] = '記事の削除に失敗しました'
         redirect_to article_path(@article)
       end
     end
