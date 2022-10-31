@@ -1,0 +1,21 @@
+ja:
+    # モデルは全て activerecord 以下に記述する。
+  activerecord:
+    models:
+      article:
+        attributes:
+          title:
+          content:
+  # ビューはビューを格納しているフォルダ名を起点にし、ビュー名毎に記述する。
+  # 対応するビューの中ではツリーを省略できる。<%= t '.title' %>
+    models:
+      article: "記事"
+    attributes:
+      article:
+        title: "タイトル"
+        content: "内容"
+# lazy lookup 「Controllerやviewファイルのディレクトリの階層」を翻訳ファイルに設定する事で、Controllerやviewファイルの内部で参照するキーを短縮してアクセスする事が出来る仕組み
+  articles:
+    show:
+      title: "一覧"
+      content: "内容"
