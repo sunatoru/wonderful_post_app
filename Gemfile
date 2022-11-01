@@ -34,6 +34,9 @@ gem 'rails-i18n', '~> 6.0'
 # jQueryとは一言で言えば「JavaScriptを便利にしてくれる道具」
 gem 'jquery-rails'
 
+# Railsで作成したアプリケーションへ簡単に認証機能を実装することができるgem
+gem 'devise'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
