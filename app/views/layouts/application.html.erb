@@ -17,9 +17,8 @@
   <%if flash.alert%>
   <p class="alert"><%= alert %></p>
   <%end%>
-  <% flash.each do |key, value| %>
-  <%= content_tag(:div, value, class: key) %>
-  <% end %>
+  <%= render partial: "layouts/menu" %>
+  <%= render partial: "layouts/navbar" %>
     <div class="container">
       <%= yield %>
     </div>
