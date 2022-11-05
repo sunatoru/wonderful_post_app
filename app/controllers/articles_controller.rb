@@ -7,6 +7,7 @@ class ArticlesController < ApplicationController
     end
 
     def show
+      @user = @article.user
     end
 
     def new
@@ -15,6 +16,7 @@ class ArticlesController < ApplicationController
 
     def create
       @article = Article.new(article_params)
+      @article.user_id = current_user.id
       if @article.save
         flash[:success] = "記事を作成しました"
         redirect_to articles_path
