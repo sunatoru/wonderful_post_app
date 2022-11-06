@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_user!, only: %i[ index show ]
+  before_action :ensure_user, only: [:edit, :update, :destroy,]
     # GET /articles or /articles.json
 
     def index
@@ -7,7 +8,8 @@ class ArticlesController < ApplicationController
     end
 
     def show
-      @user = @article.user
+      # @user = @article.user
+      @article = Article.find(params[:id])
     end
 
     def new
@@ -57,5 +59,11 @@ class ArticlesController < ApplicationController
 
       def set_article
         @article = Article.find(params[:id])
+      end
+
+      def ensure_user
+        @articles = current_user.articles
+        @article = @articles.find_by(id: params[:id])
+        redirect_to article_path unless @article
       end
 end
