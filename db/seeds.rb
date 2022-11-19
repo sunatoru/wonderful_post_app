@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+3.times do |n|
+  n += 1
+  user = User.find_or_create_by!(email: "user00#{n}@test.com") do |userq|
+    userq.password = 'test1234'
+  end
+
+
+  50.times do |a|
+    a += 1
+    user.articles.find_or_create_by!(title: "No.#{a}: user00#{a}の記事") do |article|
+      article.content = "No.#{n}: user00#{n}の記事の本文"
+    end
+  end
+end
