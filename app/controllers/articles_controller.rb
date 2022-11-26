@@ -56,7 +56,8 @@ class ArticlesController < ApplicationController
     private
       #ストロングパラメータでpermitに渡された値以外を受け取らないようにする
       def article_params
-        params.require(:article).permit(:title,:content)
+        params.require(:article).permit(:title,:content, { :tag_ids=> [] })
+      # tag_idsというパラメータを複数受け取ることのできるように設定するため
       end
 
       def set_article
