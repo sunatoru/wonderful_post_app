@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
     # GET /articles or /articles.json
 
     def index
-      articles = Article.all
+      articles = Article.includes(:tags)
       articles = articles.where("title like?", "%#{params[:title]}%") if params[:title].present?
       @articles = articles.page(params[:page]).per(10)
     end
