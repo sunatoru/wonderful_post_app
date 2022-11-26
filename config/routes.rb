@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
+  #ルーティングがusersなのにコントローラーアクション名が作成時のdiviseになっていたため、綺麗にusersで整えるために記述
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    passwords: 'users/passwords'
   }
-  devise_scope :user do#トップページをログイン画面に
-    get '/users/sign_out' => 'devise/sessions#destroy'
-  end
+
+  get '/mypage', to: 'mypage#show'
   resources :articles
-  resources :sample_articles
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'articles#index'
 end
